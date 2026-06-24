@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="page-header">
+    <h2>Delete Record</h2>
+</div>
+
+<h3>Do you want to permanently delete {{ release.title }}?</h3>
+
+<form action="" method="post" class="form">
+    {% csrf_token %}
+    <button><a href="{% url 'record-detail' release.id %}" class="btn-action">Cancel</a></button>
+    <button type="submit" class="btn-action">DELETE ARTIST</button>
+
+{% endblock %}

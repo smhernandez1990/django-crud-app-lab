@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link
+    rel="stylesheet"
+    href="{% static 'css/home.css' %}"
+/>
+{% endblock %}
+{% block content %}
+<h4>Bootleg Discogs if Discogs was less annoying about it.</h4>
+
+{% if not user.is_authenticated %}
+<section>
+    <form action="{% url 'home' %}" method="post" class="login">
+        <h2>Log In</h2>
+        {% csrf_token %} {{ form.as_p }}
+        <input type="hidden" name="next" value="{{ next }}" />
+        <button type="submit" class="btn submit">Log In</button>
+    </form>
+    <div>
+        Don't Have An Account? <a href="{% url 'signup' %}">Sign Up!</a>
+    </div>
+{% endif %}
+{% endblock %}

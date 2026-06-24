@@ -1,0 +1,61 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    --nav-bg: rgba(231, 137, 231, 0.68);
+    --nav-bg-logo: rgba(255, 185, 255, 0.878);
+    --borders: rgb(138, 73, 128);
+    --link-hover-color: rgb(239, 236, 227);
+    --text-color: rgb(48, 48, 48);
+}
+
+main {
+    width: 100%;
+    padding: 0 8px;
+}
+
+header {
+    width: 100%;
+    border-bottom: var(--borders);
+    background: var(--nav-bg-ff);
+}
+
+header a {
+    text-decoration: none;
+}
+
+nav {
+    margin: 5px;
+    background-color: var(--nav-bg);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: var(--link-hover-color);
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav li {
+    padding: 5px;
+}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head%}
+
+<link rel="stylesheet" />
+
+{% endblock %}
+{% block content %}
+
+<section class="page-header">
+    <h2>Records</h2>
+</section>
+
+<section class="card-container">
+    {% for release in release_list %}
+        <div class="card">
+            <a href="{% url 'record-detail' release.id %}">
+                <div class="card-content">
+                    <div class="card-img-container">
+                        <img
+                            src="{% static 'images/releases/' %}{{ release.img }}"
+                            alt="{{ release.title }}"
+                        />
+                    </div>
+                    <h3 class="card-title">{{ release.title }}</h3>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</section>
+
+{% endblock %}

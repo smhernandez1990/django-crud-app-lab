@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<section class="release-container">
+    <div class="release-img">
+        <img
+            src="{% static 'images/releases/' %}{{ release.img }}"
+            alt="{{ release.title }}"
+        />
+    </div>
+    <div class="release-details">
+        <h2>{{ release.title }}</h2>
+            <h4>By {{ release.artist.name }}</h4>
+            <p>
+                Released on: {{ release.date }}
+                <br />
+                Available on: {{ release.format }}
+                <br />
+                Catalogue Id: {{ release.cat_id }}
+                <br />
+                Availability: {{ release.get_soldOut_display }}
+                <br />
+                Track List: {{ release.tracks }}
+            </p>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="release-actions">
+        <a href="{% url 'record-update' release.id %}" class="btn-action"><button>Edit release</button></a>
+        <a href="{% url 'record-delete' release.id %}" class="btn-action"><button>Delete release</button></a>
+    </div>
+    {% endif %}
+            
+
+
+
+{% endblock %}

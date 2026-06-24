@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <title>Record Finder</title>
+{% block head %} {% endblock %}
+</head>
+    <body>
+        <header>
+            <div class="header-container">
+                <a href="/">
+                    <h3>Record Finder</h3>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'artist-index' %}">Artists</a></li>
+                        <li><a href="{% url 'record-index' %}">Records</a></li>
+                        <li><a href="{% url 'artist-create' %}">Add an Artist</a></li>
+                        <li>
+                            <form action="{% url 'logout' %}" method="POST" id="logout-form">
+                                {% csrf_token %}
+                                <button type="submit">Log Out</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li><a href="{% url 'home' %}">Log In</a></li>
+                        <li><a href="{% url 'artist-index' %}">Artists</a></li>
+                        <li><a href="{% url 'record-index' %}">Records</a></li>
+                    {% endif %}
+                </ul>
+            </header>
+            <main>
+                {% block content %} {% endblock %}
+            </main>    
+    </body>
+</html>

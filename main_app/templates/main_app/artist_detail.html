@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<section class="artist-container">
+    <div class="artist-img">
+        <img
+            src="{% static 'images/' %}{{ artist.img }}"
+            alt="{{ artist.name }}"
+        />
+    </div>
+    <div class="artist-details">
+        <h2>{{ artist.name }}</h2>
+            <h4>{{ artist.get_isActive_display }}
+                <br />
+                {{ artist.name }} is: {{ artist.members }}
+            </h4>
+            <p>{{ artist.bio }}</p>
+    </div>
+    <div class="artist-actions">
+        <a href="{% url 'artist-update' artist.id %}" class="btn-action"><button>Edit Artist</button></a>
+        <a href="{% url 'artist-delete' artist.id %}" class="btn-action"><button>Delete Artist</button></a>
+    </div>
+<section class="artist-release-container">
+    <div class="sub-title">
+        <h2>Releases by {{ artist.name }}</h2>
+    </div>
+    <div>
+        {% if user.is_authenticated %}
+            <button class="btn-actions"><a href="{% url 'record-create' %}">Add A Record</a></button>
+        {% endif %}
+        {% if artist.release_set.all.count %}
+            {% for release in artist.release_set.all %}
+            <div class="card">
+                <a href="{% url 'record-detail' release.id %}">
+                    <div class="card-content">
+                        <div class="card-img-container">
+                            <img
+                                src="{% static 'images/artists/' %}{{ release.img }}"
+                                alt="{{ release.title }}"
+                            />
+                        </div>
+                        <h3 class="card-title">{{ release.title }}</h3>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    {% endif %}
+</section>
+
+{% endblock %}
